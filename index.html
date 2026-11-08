@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ผลการเรียน ม.3/1 | SWPK</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1c2b5a;
+    --navy-soft: #2e4080;
+    --sky: #eef3fb;
+    --paper: #ffffff;
+    --amber: #f0b429;
+    --ink: #1b2233;
+    --muted: #5a6478;
+    --line: #d6deee;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: "Noto Sans Thai", system-ui, sans-serif;
+    background: var(--sky);
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    background: var(--navy);
+    color: #fff;
+    border-bottom: 4px solid var(--amber);
+  }
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  /* ช่องใส่โลโก้โรงเรียน (มุมบนซ้าย) */
+  .logo-slot {
+    flex: 0 0 auto;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #fff;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    border: 2px dashed var(--line);
+  }
+  .logo-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  .logo-slot.has-logo { border: 2px solid #fff; }
+  .logo-slot span { font-size: 11px; color: var(--muted); text-align: center; line-height: 1.2; }
+
+  .titles { min-width: 0; }
+  .school {
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    color: var(--amber);
+  }
+  h1 {
+    font-size: clamp(1.15rem, 3.6vw, 1.9rem);
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  /* ---------- Main ---------- */
+  main {
+    flex: 1;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .toolbar p { color: var(--muted); font-size: .95rem; }
+  .btn {
+    display: inline-block;
+    background: var(--navy);
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font: inherit;
+    font-size: .9rem;
+    border: 0;
+    cursor: pointer;
+  }
+  .btn:hover { background: var(--navy-soft); }
+  .btn:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+
+  .frame-wrap {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(28, 43, 90, .08);
+    aspect-ratio: 600 / 373.5;   /* สัดส่วนเดิมของ Power BI */
+    width: 100%;
+  }
+  .frame-wrap iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+
+  /* มือถือ: เพิ่มความสูงให้อ่านรายงานได้ง่ายขึ้น */
+  @media (max-width: 700px) {
+    main { padding: 12px; }
+    .header-inner { padding: 10px 12px; gap: 12px; }
+    .logo-slot { width: 52px; height: 52px; }
+    .frame-wrap { aspect-ratio: auto; height: 72vh; min-height: 380px; border-radius: 8px; }
+  }
+  /* มือถือแนวนอน */
+  @media (max-height: 500px) and (orientation: landscape) {
+    .frame-wrap { height: 85vh; aspect-ratio: auto; }
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    background: var(--navy);
+    color: #dfe6f7;
+    text-align: center;
+    padding: 16px 20px;
+    font-size: .9rem;
+    border-top: 4px solid var(--amber);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <!-- โลโก้โรงเรียน: ใส่ไฟล์รูปชื่อ logo.png ไว้โฟลเดอร์เดียวกัน หรือแก้ src ด้านล่าง -->
+    <div class="logo-slot" id="logoSlot">
+      <img src="https://www.swpk.ac.th/wp-content/uploads/2025/01/swpk-logo-mini-150x150.webp" alt="โลโก้โรงเรียน SWPK"
+           onload="document.getElementById('logoSlot').classList.add('has-logo')"
+           onerror="this.remove(); document.querySelector('#logoSlot').innerHTML='<span>ใส่โลโก้<br>ที่นี่</span>'">
+    </div>
+    <div class="titles">
+      <div class="school">โรงเรียนเฉลิมพระเกียรติสมเด็จพระศรีนครินทร์ ภูเก็ต</div>
+      <h1>ผลการเรียน ระดับชั้นมัธยมศึกษาปีที่ 3/1</h1>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="toolbar">
+    <p>แดชบอร์ดผลการเรียนของนักเรียน</p>
+    <a class="btn" target="_blank" rel="noopener"
+       href="https://app.powerbi.com/view?r=eyJrIjoiMWU2MzlhNWMtYjA0OS00ZGU5LThhNDctZGI2MDFiNTFmYWFkIiwidCI6IjQzZDNlNWRmLTU2ZDItNGI3NS05MDI4LTE3ZDM0NzY0ZDFhMCIsImMiOjEwfQ%3D%3D">
+      เปิดเต็มหน้าจอ
+    </a>
+  </div>
+
+  <div class="frame-wrap">
+    <iframe
+      title="Student_Grades_Dashboard"
+      src="https://app.powerbi.com/view?r=eyJrIjoiMWU2MzlhNWMtYjA0OS00ZGU5LThhNDctZGI2MDFiNTFmYWFkIiwidCI6IjQzZDNlNWRmLTU2ZDItNGI3NS05MDI4LTE3ZDM0NzY0ZDFhMCIsImMiOjEwfQ%3D%3D"
+      allowfullscreen="true"
+     ></iframe>
+  </div>
+</main>
+
+<footer>
+  Develop By Kru Yotin Changlek Science and Technology Department 1/2569
+</footer>
+</body>
+</html>
